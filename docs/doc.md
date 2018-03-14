@@ -24,7 +24,6 @@ In this document, the term `Collation` is used to differentiate from `Block` bec
 * `PERIOD_LENGTH`: 5
 * `COLLATION_GASLIMIT`: 10,000,000 gas
 * `SHARD_COUNT`: 100
-* `SIG_GASLIMIT`: 40000 gas
 * `COLLATOR_REWARD`: 0.001 ETH
 
 ### Validator Manager Contract (VMC)
@@ -279,7 +278,7 @@ while len(txpool) > 0:
     # Remove txs that ask for too much gas
     i = 0
     while i < len(txpool):
-        if txpool[i].startgas > GASLIMIT - collation.gasused:
+        if txpool[i].startgas > COLLATION_GASLIMIT - collation.gasused:
             txpool.pop(i)
         else:
             i += 1
